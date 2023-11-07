@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes } from "react-router-dom"
 import Header from "./components/Header"
 import Page from "./components/Page"
 import Footer from "./components/Footer"
@@ -5,9 +6,13 @@ import Footer from "./components/Footer"
 function App() {
     return (
         <>
-            <Header />
-            <Page />
-            <Footer />
+            <BrowserRouter>
+                <Routes>
+                </Routes>
+                    <Header />
+                    <Page />
+                    <Footer />
+            </BrowserRouter>
         </>
     )
 }
