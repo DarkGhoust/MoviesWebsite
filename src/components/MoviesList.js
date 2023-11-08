@@ -35,13 +35,29 @@ const list = [
     }
 ]
 
-const categories = ["All", "Rating", "Recent", "Oldest"]
+const categories = [
+    {
+        name: "All",
+        filter: null
+    },
+    {
+        name: "Rating",
+        filter: "rating | acs"
+    },
+    {
+        name: "Recent",
+        filter: "date | acs"
+    },
+    {
+        name: "Oldest",
+        filter: "date | desc"
+    }
+
+]
 
 function MoviesList() {
 
     const [selectedCategory, setSelectedCategory] = useState("All")
-
-    
 
     return (
         <div>
@@ -60,9 +76,9 @@ export default MoviesList
 function CategoriesButtons ({setSelectedCategory, selectedCategory}){
     return categories.map(item => 
         <button
-            onClick={() => setSelectedCategory(item)} 
-            className={selectedCategory === item ? "btn main_btn": "btn secondary_btn"}
-        >{item}</button>
+            onClick={() => setSelectedCategory(item.name)} 
+            className={selectedCategory === item.name ? "btn main_btn": "btn secondary_btn"}
+        >{item.name}</button>
     )
 }
 
@@ -86,7 +102,7 @@ function List ({selectedCategory}){
     }, [list, selectedCategory])
     
     const listHTML = sortedList.map((item, ID) =>
-        <div className="list_item">
+        <div className="list_item" key={ID}>
             <img alt="episode" src={item.img} />
             <h4>{item.title}</h4>
             <p>{item.description}</p>
