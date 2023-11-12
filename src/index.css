@@ -6,9 +6,9 @@
 
 :root{
     --main-color: #df3a3a;
-    --accent-color: #df3a3a;
+    --accent-color: #e25050;
     --bg-color: #1a202f;
-    --bg-light: #272b35;
+    --bg-light: #1f2638;
     --white: #e6e6e6;
     --black: #1f1f1f;
 }
@@ -33,6 +33,9 @@ body{
 .gap-1{
     gap: 1em;
 }
+.gap-2{
+    gap: 2em;
+}
 .spacer-0{
     margin-bottom: .5rem;
 }
@@ -52,8 +55,11 @@ body{
 .text-md{
     font-size: 20px;
 }
+.text{
+    font-size: 16px;
+}
 .text-sm{
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .max-width{
@@ -64,6 +70,18 @@ body{
 
 h1{
     font-size: clamp(20px, 6vw, 60px);
+}
+
+h2{
+    font-size: clamp(18px, 5vw, 50px);
+}
+
+h3{
+    font-size: clamp(18px, 4vw, 42px);
+}
+
+h4{
+    font-size: clamp(16px, 3vw, 18px);
 }
 
 hr{
@@ -77,9 +95,12 @@ img{
 }
 
 section{
-    min-height: 95vh;
+    min-height: 100vh;
     padding: 1em;
     justify-content: center;
+}
+a{
+    color: var(--white);
 }
 
 .rounded{
@@ -90,24 +111,34 @@ section{
     background-color: var(--bg-color);
 }
 
+.glow{
+    -webkit-box-shadow:0px 0px 23px 3px rgba(164,172,242,0.1);
+-moz-box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
+box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
+}
+
 .bg-light{
     background-color: var(--bg-light);
 }
 
 .glass-reflection{
     background: linear-gradient(127deg, 
-    rgba(255,255,255,0.1) 26%, 
-    transparent 26%, 
-    transparent 45%, 
-    rgba(255,255,255,0.1) 45%, 
-    rgba(255,255,255,0.1) 75%, 
-    transparent 75%);
+    var(--bg-color) 20%, 
+    var(--bg-light) 20%, 
+    var(--bg-light) 40%, 
+    var(--bg-color) 40%, 
+    var(--bg-color) 60%, 
+    var(--bg-light) 60%,
+    var(--bg-light) 80%,
+    var(--bg-color) 80% 
+    );
 }
 
 .btn{
+    cursor: pointer;
     display: block;
     text-decoration: none;
-    padding: .5em 1.2em;
+    padding: .8em 1.6em;
     border: 2px solid var(--accent-color);
     font-weight: 500;
 }
@@ -118,5 +149,19 @@ section{
 }
 .main_btn{
     color: var(--white);
-    background-color: var(--main-color);
+    background-color: var(--accent-color);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+   
+::-webkit-scrollbar-track {
+    background-color: var(--bg-light);
+}
+   
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 4px;
 }

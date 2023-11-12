@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 const list = [
     {
         id: 1,
-        img: "url",
+        img: "mov1.jpg",
         title: "Title",
         rating: 7,
         release_date: "1999-08-02",
@@ -11,7 +11,7 @@ const list = [
     },
     {
         id: 2,
-        img: "url",
+        img: "mov1.jpg",
         title: "Title",
         rating: 2,
         release_date: "1999-08-01",
@@ -19,7 +19,7 @@ const list = [
     },
     {
         id: 3,
-        img: "url",
+        img: "mov1.jpg",
         title: "Title",
         rating: 4,
         release_date: "1999-08-12",
@@ -27,7 +27,7 @@ const list = [
     },
     {
         id: 4,
-        img: "url",
+        img: "mov1.jpg",
         title: "Title",
         rating: 10,
         release_date: "1999-08-30",
@@ -61,10 +61,10 @@ function MoviesList() {
 
     return (
         <div>
-            <div className="flex">
+            <div className="flex gap-0 spacer-1">
                 <CategoriesButtons selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
             </div>
-            <div className="list movies_list">
+            <div className="list movies_list flex gap-1">
                 <List orderBy={selectedCategory}/>
             </div>
         </div>
@@ -77,7 +77,7 @@ function CategoriesButtons ({setSelectedCategory, selectedCategory}){
     return categories.map(item => 
         <button
             onClick={() => setSelectedCategory(item.name)} 
-            className={selectedCategory === item.name ? "btn main_btn": "btn secondary_btn"}
+            className={selectedCategory === item.name ? "btn rounded main_btn": "btn rounded secondary_btn"}
         >{item.name}</button>
     )
 }
@@ -103,8 +103,8 @@ function List ({selectedCategory}){
     
     const listHTML = sortedList.map((item, ID) =>
         <div className="list_item" key={ID}>
-            <img alt="episode" src={item.img} />
-            <h4>{item.title}</h4>
+            <img className="spacer-1" alt="episode" src={"/img/" + item.img} />
+            <h4 className="spacer-0">{item.title}</h4>
             <p>{item.description}</p>
         </div>
     )

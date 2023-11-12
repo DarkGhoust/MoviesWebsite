@@ -1,7 +1,7 @@
 .hero{
-    !background: url("../../public/logo512.png");
+    background: url("../../public/img/hero.jpg");
     position: relative;
-
+    
 }
 
     /* .hero::before{

@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom"
+import { HashLink } from 'react-router-hash-link';
 
 function Menu() {
     return (
         <nav className="flex gap-0">
             <Link to="/" >Home</Link>
-            <Link to="/movies" >Movies</Link>
-            <Link to="/categories" >Categories</Link>
-            <Link to="/pricing" >Pricing</Link>
-            <Link to="/about" >About</Link>
+            <HashLink to="/#top_rated" >Movies</HashLink>
+            <HashLink to="/#pricing" >Pricing</HashLink>
         </nav>
     )
 }

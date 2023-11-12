@@ -1,19 +1,19 @@
 
 const list = [
     {
-        img: "url",
-        description: "Some text"
+        img: "ep1.jpg",
+        description: "Clip that shows how exciting this new movie is"
     },
     {
-        img: "url",
-        description: "Some text 2"
+        img: "ep1.jpg",
+        description: "The fight scene that is the highlight of this movie"
     },
     {
-        img: "url",
+        img: "ep1.jpg",
         description: "Some text 5 2w2qea"
     },
     {
-        img: "url",
+        img: "ep1.jpg",
         description: "Some text 87432s dsa dasd21qew sad"
     }
 ]
@@ -22,13 +22,13 @@ function EpisodeList() {
 
     const listHTML = list.map((item, ID) =>
         <div className="list_item" key={ID}>
-            <img alt="episode" src={item.img} />
+            <img className="spacer-1" alt="episode" src={ "/img/" + item.img} />
             <p>{item.description}</p>
         </div>
     )
 
     return (
-        <div className="list episode_list flex gap-0">
+        <div className="list episode_list flex gap-1">
             {listHTML}
         </div>
     )
