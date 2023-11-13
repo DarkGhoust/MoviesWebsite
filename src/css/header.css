@@ -22,4 +22,5 @@ header a:hover{
 .logo{
     display: block;
     height: 40px;
+    width: auto;
 }

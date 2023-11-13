@@ -1,0 +1,65 @@
+.dual_range{
+    --line-height: 4px;
+    --thumb-width: 20px;
+}
+
+.dual_range_line{
+    position: relative;
+    width: calc(100% - var(--thumb-width));
+    margin: 0 auto;
+    height: var(--line-height);
+    background-color: var(--accent-color);
+}
+
+.dual_range_thumb{
+    position: absolute;
+    display: block;
+    width: var(--thumb-width);
+    height: var(--thumb-width);
+    border-radius: var(--thumb-width);
+    background-color: var(--accent-color);
+    top: calc( var(--line-height) / 2 );
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.range_control {
+    position: relative;
+    height: var(--thumb-width);
+    justify-content: center;
+}
+
+.range_input{
+    justify-content: space-between;
+}
+
+/*
+    Disable old Range Style
+*/
+
+.dual_range input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: var(--thumb-width);
+    height: var(--thumb-width);
+    cursor: pointer;
+}
+
+.dual_range input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: var(--thumb-width);
+    height: var(--thumb-width);
+    cursor: pointer;  
+}
+
+
+.dual_range input[type="range"] {
+    -webkit-appearance: none; 
+    appearance: none;
+    height: var(--line-height);
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+}

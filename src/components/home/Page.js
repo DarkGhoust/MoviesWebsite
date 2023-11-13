@@ -25,14 +25,14 @@ function Page() {
                 </div>
             </section>
 
-            <section className="flex" id="top_rated">
+            <section className="flex spacer-2" id="top_rated">
                 <div className="max-width flex col">
                     <h2 className="spacer-1">The Most Popular <br/>Movies To Watch</h2>
                     <TopRated />
                 </div>
             </section>
 
-            <section className="flex" id="pricing">
+            <section className="flex spacer-2" id="pricing">
                 <div className="max-width flex col">
                     <h2 className="spacer-1">Choose The Plan That<br />Suits For You</h2>
                     <p className="spacer-2">We present packages that you can choose to start watching various movies at low prices and according to your needs</p>
