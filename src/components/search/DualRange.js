@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./DualRange.css"
 
-function DualRange ({min = 1980, max = 2023, step = 1}){
+function DualRange ({fromName, toName, min, max, step = 1}){
 
     const [value, setValue] = useState({from: min, to: max})
     const thumbLeft = 100 * ( value.from - min ) / (max - min)
@@ -10,8 +10,6 @@ function DualRange ({min = 1980, max = 2023, step = 1}){
     const handleChange = (event) => {
 		const name = event.target.name
 		const buttonValue = event.target.type === 'checkbox' ? event.target.checked : event.target.value
-        
-        console.log(buttonValue, name)
 
         if ( name === "to" && buttonValue < value.from ){
             setValue(values => ({...values, [name]: parseInt(value.from)}))

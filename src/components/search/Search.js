@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import List from "./List"
 import Filters from "./Filters"
+import { FilterContext } from "./FiltersContext"
 
 function Search() {
 
@@ -8,6 +9,10 @@ function Search() {
     const [filters, setFilters] = useState({
         sort: "primary_release_date.desc"
     })
+
+    const handleFilter = () =>{
+        
+    }
 
     const sortBy = () =>{
         //cosnt value
@@ -19,10 +24,13 @@ function Search() {
     return (
         <section className="flex hero spacer-2">
             <div className="max-width flex col">
-                <Filters />
+                <FilterContext.Provider value={[filters, setFilters]}>
+                    <Filters />
+                    <button onClick={handleFilter}>Filter</button>
+                </FilterContext.Provider>
 
                 Sort By
-                <select onChange={ sortBy }>
+                <select onChange={ sortBy } name="sort" value={filters?.sort}>
                     <option value="primary_release_date.desc">Newest</option>
                     <option value="primary_release_date.asc">Oldest</option>
                     <option value="popularity.desc">Popularity</option>

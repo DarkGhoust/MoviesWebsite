@@ -1,5 +1,21 @@
 .hero{
     background: url("../../public/img/hero.jpg");
     position: relative;
-    padding-top: var(--header-height) ;
+    padding-top: var(--header-height);
+    z-index: 1;
+}
+
+.hero.overlay::before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.hero>div{
+    z-index: 2;
 }
