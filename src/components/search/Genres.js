@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { FilterContext } from "./FiltersContext"
 import useSearchApi from "../../functions/useSearchApi"
 
-function Genres ({setSelectedCategory, selectedCategory}){
+function Genres (){
     const { getGenres } = useSearchApi()
+    const [filters, setFilters] = useContext(FilterContext)
     const [genres, setGenres] = useState(null)
 
     useEffect(() =>{
@@ -11,11 +13,18 @@ function Genres ({setSelectedCategory, selectedCategory}){
         }
         fetch()
     },[])
+
+    const handleChange = (e) =>{
+        const name = e.target.name
+		const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+
+        setFilters({...filters, [name]: value})
+    }
  
     const list = genres?.genres.map(item => <option value={item.id}>{item.name}</option>)
 
     return (
-        <select name="with_genres" >
+        <select name="with_genres" onChange={handleChange} value={filters.with_genres} >
             {list}
         </select>
     )

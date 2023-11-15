@@ -4,6 +4,7 @@ import useMovieApi from "../../functions/useMovieApi"
 import Cast from "./Cast"
 import Reviews from "./Reviews"
 import Recomendations from "./Recomendations"
+import Loader from "../Loader"
 import "../../css/page.css"
 
 function Movie() {
@@ -26,7 +27,14 @@ function Movie() {
         return new Date(date).getFullYear()
     }
 
-    const genres = movie?.genres.map( (item, key) => <label style={{padding: "0.3em 1em"}} className="genres rounded bg-light" key={key}>{item.name}</label>)
+    function toHoursAndMinutes(totalMinutes) {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        return `${hours}h ${minutes}m`
+    }
+
+    const genres = movie?.genres.map( (item, key) => <label style={{padding: "0.3em 1em"}} className="label rounded bg-light" key={key}>{item.name}</label>)
 
     return (
         <main className="glass-reflection">
@@ -34,7 +42,7 @@ function Movie() {
                 style={{backgroundImage: `url("https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie?.backdrop_path}")`}}>
                 <div className="max-width flex gap-1">
 
-                    { movie === null ? "Loading..." : 
+                    { movie === null ? <Loader elements={4} /> : 
                     <>
                         <div style={{width: "50%"}}>
                             <img className="spacer-1" alt="episode" src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + movie.poster_path} />
@@ -44,8 +52,8 @@ function Movie() {
                             <i>{movie.tagline}</i>
 
                             <div className="flex gap-0">
-                                <span>Rating: {movie.popularity}</span>
-                                <span>Time: {movie.runtime}</span>
+                                <span className="label rounded">Rating: { movie.popularity }</span>
+                                <span className="label rounded">Time: { toHoursAndMinutes(movie.runtime) }</span>
                             </div>
 
                             <p>{movie.overview}</p>

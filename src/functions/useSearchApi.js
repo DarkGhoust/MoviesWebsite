@@ -20,8 +20,16 @@ function useSearchApi(){
         return await fetchData( `${apiBaseUrl}/genre/movie/list?language=en` )        
     }
 
+    const getMovies = async (filters, page) =>{
+        const properties = Object.entries(filters).map( item => `${item[0]}=${item[1]}`)
+        const params = properties.join('&')
+
+        return await fetchData( `${apiBaseUrl}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&${params}` )        
+    }
+
     return {
-        getGenres
+        getGenres,
+        getMovies
     }
 }
 

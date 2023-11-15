@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -11,16 +15,16 @@
     --bg-light: #1f2638;
     --white: #e6e6e6;
     --black: #1f1f1f;
-    --header-height: 72px;
+    /* --header-height: 72px; */
 }
 
 body{
     font-family: "Inter", sans-serif;
     background-color: var(--bg-color);
     color: var(--white);
-    font-weight: 200;
+    /* font-weight: 200; */
 }
-
+/* 
 .flex{
     display: flex;
 }
@@ -29,13 +33,13 @@ body{
 }
 
 .gap-0{
-    gap: .75em;
+    gap: .75rem;
 }
 .gap-1{
-    gap: 1em;
+    gap: 1rem;
 }
 .gap-2{
-    gap: 2em;
+    gap: 2rem;
 }
 .spacer-0{
     margin-bottom: .5rem;
@@ -51,16 +55,16 @@ body{
 }
 
 .text-lg{
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 .text-md{
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 .text{
-    font-size: 16px;
+    font-size: 1rem;
 }
 .text-sm{
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .max-width{
@@ -70,19 +74,19 @@ body{
 }
 
 h1{
-    font-size: clamp(20px, 6vw, 60px);
+    font-size: clamp(1.25rem, 6vw, 60px);
 }
 
 h2{
-    font-size: clamp(18px, 5vw, 50px);
+    font-size: clamp(1.125rem, 5vw, 50px);
 }
 
 h3{
-    font-size: clamp(18px, 4vw, 42px);
+    font-size: clamp(1.125rem, 4vw, 42px);
 }
 
 h4{
-    font-size: clamp(16px, 3vw, 18px);
+    font-size: clamp(1rem, 3vw, 18px);
 }
 
 hr{
@@ -97,15 +101,27 @@ img{
 
 section{
     min-height: 100vh;
-    padding: 1em;
+    padding: 1rem;
     justify-content: center;
 }
 a{
     color: var(--white);
 }
 
+.loader{
+    width: 100%;
+    flex: 1;
+    min-height: 200px;
+}
+
+.label{
+    display: inline-block;
+    padding: 0.3em .8em;
+    background-color: var(--black);
+}
+
 .rounded{
-    border-radius: 1em;
+    border-radius: 1rem;
 }
 
 .bg{
@@ -114,8 +130,8 @@ a{
 
 .glow{
     -webkit-box-shadow:0px 0px 23px 3px rgba(164,172,242,0.1);
--moz-box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
-box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
+    -moz-box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
+    box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
 }
 
 .bg-light{
@@ -151,7 +167,7 @@ box-shadow: 0px 0px 23px 3px rgba(164,172,242,0.1);
 .main_btn{
     color: var(--white);
     background-color: var(--accent-color);
-}
+} */
 
 ::-webkit-scrollbar {
     width: 4px;

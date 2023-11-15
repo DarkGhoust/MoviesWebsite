@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { tinyReview, getReleaseDate } from "./reviews.functions"
 import useMovieApi from "../../functions/useMovieApi"
+import Loader from "../Loader"
 
 function Reviews({movieId}) {
 
@@ -36,7 +37,7 @@ function Reviews({movieId}) {
         <div>
             <div className="list top-rated flex col gap-1">
                 <h3>Reviews {reviews?.total_results ? `(${reviews.total_results})` : ""}</h3>
-                { reviews === null ? "Loading..." : <List reviews={reviews} setReviews={setReviews} /> }
+                { reviews === null ? <Loader elements={2} /> : <List reviews={reviews} setReviews={setReviews} /> }
                 { reviews?.total_pages > 1 && reviews?.page !== reviews?.total_pages ? <button onClick={loadMore}>Load more</button> : "" }
             </div>
         </div>

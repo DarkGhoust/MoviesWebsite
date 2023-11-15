@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { HashLink } from 'react-router-hash-link'
 import useMovieApi from "../../functions/useMovieApi"
+import Loader from "../Loader"
 
 function Recomendations({movieId}) {
 
@@ -33,7 +34,7 @@ function Recomendations({movieId}) {
     return (
         <div>
             <div className="list top-rated flex gap-1">
-                { recomendations === null ? "Loading..." : <List recomendations={recomendations} setReviews={setReviews} /> }
+                { recomendations === null ? <Loader elements={4} /> : <List recomendations={recomendations} setReviews={setReviews} /> }
                 { recomendations?.total_pages > 1 && recomendations?.page !== recomendations?.total_pages ? <button onClick={loadMore}>Load more</button> : "" }
             </div>
         </div>

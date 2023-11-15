@@ -1,26 +1,28 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { FilterContext } from "./FiltersContext"
 import "./DualRange.css"
 
 function DualRange ({fromName, toName, min, max, step = 1}){
 
-    const [value, setValue] = useState({from: min, to: max})
-    const thumbLeft = 100 * ( value.from - min ) / (max - min)
-    const thumbRight = 100 * ( value.to - min ) / (max - min) 
+    const [filters, setFilters] = useContext(FilterContext)
+    // const [value, setValue] = useState({from: min, to: max})
+    const thumbLeft = 100 * ( filters.fromName - min ) / (max - min)
+    const thumbRight = 100 * ( filters.toName - min ) / (max - min) 
 
     const handleChange = (event) => {
 		const name = event.target.name
 		const buttonValue = event.target.type === 'checkbox' ? event.target.checked : event.target.value
 
-        if ( name === "to" && buttonValue < value.from ){
-            setValue(values => ({...values, [name]: parseInt(value.from)}))
+        if ( name === toName && buttonValue < filters.fromName ){
+            setFilters(values => ({...values, [name]: parseInt(filters.fromName)}))
             return
         }
-        if ( name === "from" && buttonValue > value.to ){
-            setValue(values => ({...values, [name]: parseInt(value.to)}))
+        if ( name === fromName && buttonValue > filters.toName ){
+            setFilters(values => ({...values, [name]: parseInt(filters.toName)}))
             return
         }
         
-		setValue(values => ({...values, [name]: parseInt(buttonValue)}))
+		setFilters(values => ({...values, [name]: parseInt(buttonValue)}))
 	}
 
     return (
@@ -36,15 +38,15 @@ function DualRange ({fromName, toName, min, max, step = 1}){
 
                 <input type="range"
                     onChange={ handleChange }
-                    name="from"
-                    value={value.from}
+                    name={fromName}
+                    value={filters.fromName || min}
                     min={min}
                     max={max}
                     step={step}/>
                 <input type="range"
                     onChange={ handleChange }
-                    name="to"
-                    value={value.to}
+                    name={toName}
+                    value={filters.toName || max}
                     min={min}
                     max={max}
                     step={step}/>
@@ -54,16 +56,16 @@ function DualRange ({fromName, toName, min, max, step = 1}){
                     <p class="form_control_container__time">Min</p>
                     <input type="number"
                         onChange={ handleChange }
-                        name="from"
-                        value={value.from}
+                        name={fromName}
+                        value={filters.fromName || min}
                         min={min}
                         max={max}/>
                 </div>
                 <div className="flex gap-0">
                     <input type="number" 
                         onChange={ handleChange }
-                        name="to"
-                        value={value.to}
+                        name={toName}
+                        value={filters.toName || max}
                         min={min}
                         max={max}/>
                     <p class="form_control_container__time">Max</p>

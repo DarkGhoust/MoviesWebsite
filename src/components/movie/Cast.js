@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import useMovieApi from "../../functions/useMovieApi"
+import Loader from "../Loader"
 
 function Cast({movieId}) {
 
@@ -16,7 +17,7 @@ function Cast({movieId}) {
     return (
         <div>
             <div className="list top-rated flex gap-1">
-				{ credits === null ? "Loading..." : <List credits={credits} /> }
+				{ credits === null ? <Loader elements={4} /> : <List credits={credits} /> }
             </div>
         </div>
     )
