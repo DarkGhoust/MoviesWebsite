@@ -14,19 +14,40 @@ function Genres (){
         fetch()
     },[])
 
-    const handleChange = (e) =>{
-        const name = e.target.name
-		const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    console.log(filters.with_genres)
 
-        setFilters({...filters, [name]: value})
+    const handleClick = (id) =>{
+
+        const selectedGenres = filters.with_genres.split(",")
+
+        if(!selectedGenres.includes(id.toString())){        
+            selectedGenres.push(id);               
+        }else{
+            selectedGenres.splice(selectedGenres.indexOf(id.toString()), 1);  //deleting
+        }
+        if(selectedGenres[0] === ''){
+            selectedGenres.shift()
+        }
+
+        setFilters({...filters, with_genres: selectedGenres.join(",")})
     }
- 
-    const list = genres?.genres.map(item => <option value={item.id}>{item.name}</option>)
+
+    const list = genres?.genres.map(item => {
+            return <p className={ filters.with_genres.split(",").includes( item.id.toString() )
+            ? "rounded-xl bg-orange-600 py-1 px-3 text-sm text-slate-100 cursor-pointer" 
+            : "rounded-xl bg-slate-50 dark:bg-slate-900 py-1 px-3 text-sm cursor-pointer" }
+                value={item.id}
+                onClick={() =>{ handleClick( item.id ) }}
+            >
+                {item.name}
+            </p>
+        }
+    )
 
     return (
-        <select name="with_genres" onChange={handleChange} value={filters.with_genres} >
+        <div className="flex gap-2 flex-wrap" >
             {list}
-        </select>
+        </div>
     )
 }
 

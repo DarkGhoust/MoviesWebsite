@@ -19,6 +19,9 @@ function useSearchApi(){
     const getGenres = async () =>{
         return await fetchData( `${apiBaseUrl}/genre/movie/list?language=en` )        
     }
+    const getMovie = async ( query, page ) =>{
+        return await fetchData( `${apiBaseUrl}/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}` )        
+    }
 
     const getMovies = async (filters, page) =>{
         const properties = Object.entries(filters).map( item => `${item[0]}=${item[1]}`)
@@ -29,7 +32,8 @@ function useSearchApi(){
 
     return {
         getGenres,
-        getMovies
+        getMovies,
+        getMovie
     }
 }
 

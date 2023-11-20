@@ -1,7 +1,7 @@
 const tinyReview = ( data ) =>{
 
     const results = data.results.map( item => {
-        const tiny = item.content.length > 500 ? item.content.substring(0, 500) + "..." : false
+        const tiny = item.content.length > 300 ? item.content.substring(0, 300) + "..." : false
 
         return {
             ...item,

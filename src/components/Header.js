@@ -1,13 +1,10 @@
 import Menu from "./Menu"
 import SearchBar from "./SearchBar"
-import "../css/header.css"
 
 function Header() {
     return (
-        <header className="flex">
-            <img className="logo" alt="logo" src="logo192.png"/>
+        <header className="flex sticky py-4 top-0 bg-gray-50 dark:bg-slate-900 z-30">
             <SearchBar />
-            <Menu />
         </header>
     )
 }

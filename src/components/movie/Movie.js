@@ -1,31 +1,32 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
+import { getReleaseYear } from "../../functions/functions"
 import useMovieApi from "../../functions/useMovieApi"  
 import Cast from "./Cast"
 import Reviews from "./Reviews"
 import Recomendations from "./Recomendations"
 import Loader from "../Loader"
-import "../../css/page.css"
 
 function Movie() {
 
     const { movieId } = useParams()
     const { getMovie } = useMovieApi()
+    const navigate = useNavigate()
     const [ movie, setMovie ] = useState(null)
 
     console.log(movie)
 
     useEffect(() =>{
         async function fetch(){
-            setMovie( await getMovie(movieId) )
+            const data = await getMovie(movieId)
+            if(data.error){
+                navigate("/random")
+                return false
+            }
+            setMovie( data )
         }
         fetch()
     },[movieId])
-
-    const getReleaseDate = () =>{
-        const date = movie.release_date
-        return new Date(date).getFullYear()
-    }
 
     function toHoursAndMinutes(totalMinutes) {
         const hours = Math.floor(totalMinutes / 60);
@@ -34,55 +35,50 @@ function Movie() {
         return `${hours}h ${minutes}m`
     }
 
-    const genres = movie?.genres.map( (item, key) => <label style={{padding: "0.3em 1em"}} className="label rounded bg-light" key={key}>{item.name}</label>)
+    const genres = movie?.genres.map( (item, key) => <label className="border rounded-lg px-2 border-solid border-slate-800 dark:border-slate-200" key={key}>{item.name}</label>)
 
     return (
-        <main className="glass-reflection">
-            <section className="flex hero overlay spacer-2"  id="hero"
+        <div className="page">
+
+            { movie === null ? 
+                <div>
+                    <div className="mb-8">
+                        <Loader elements={1} /> 
+                    </div>
+                    <div className="grid grid-cols-6 gap-4 ">
+                        <Loader elements={6} />
+                    </div>
+                </div>
+            : <>
+                <section className="flex overflow-hidden relative hero flex-col justify-end rounded-2xl bg-slate-600 pb-5 pt-20 px-7 mb-8 bg-cover"
                 style={{backgroundImage: `url("https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${movie?.backdrop_path}")`}}>
-                <div className="max-width flex gap-1">
-
-                    { movie === null ? <Loader elements={4} /> : 
-                    <>
-                        <div style={{width: "50%"}}>
-                            <img className="spacer-1" alt="episode" src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + movie.poster_path} />
+                    <div className="z-[2]">
+                        <h2 className="text-3xl font-bold mb-1">{movie.title} <span className="text-base">({getReleaseYear(movie)})</span></h2>
+                        <i className="mb-3 block text-sm">{movie.tagline}</i>
+                        <div className="flex gap-0 mb-3 text-sm">
+                            <span className="label rounded">Rating: { movie.popularity }</span>
+                            <span className="label rounded">Time: { toHoursAndMinutes(movie.runtime) }</span>
                         </div>
-                        <div style={{width: "50%"}}>
-                            <h2>{movie.title} ({ getReleaseDate() })</h2>
-                            <i>{movie.tagline}</i>
+                        <p className="mb-4">{movie.overview}</p>
+                        <div className="flex gap-2 text-sm flex-wrap">{genres}</div>
+                    </div>
+                </section>
 
-                            <div className="flex gap-0">
-                                <span className="label rounded">Rating: { movie.popularity }</span>
-                                <span className="label rounded">Time: { toHoursAndMinutes(movie.runtime) }</span>
-                            </div>
-
-                            <p>{movie.overview}</p>
-                            <p><b>Genres</b></p>
-                            <div className="flex gap-0">{genres}</div>
-                            
-                        </div>
-                    </>
-                    }
-                    
-                </div>
-            </section>
-
-            <section className="flex" id="top_rated">
-                <div className="max-width flex col">
-                    <h2 className="spacer-1">Top Billed Cast</h2>
+                <section className="flex flex-col mb-8">
                     <Cast movieId={movieId} />
+                </section>
+
+                <section className="flex flex-col mb-8">
                     <Reviews movieId={movieId} />
-                </div>
-            </section>
+                </section>
 
-            <section className="flex" id="top_rated">
-                <div className="max-width flex col">
-                    <h2 className="spacer-1">Recomendations</h2>
+                <section className="flex flex-col mb-8">
+                    <h2 className="text-lg font-medium mb-5">Recomendations</h2>
                     <Recomendations movieId={movieId} />
-                </div>
-            </section>
-
-        </main>
+                </section>
+            </>
+            }
+        </div>
     )
 }
 
