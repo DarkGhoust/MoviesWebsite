@@ -43,7 +43,7 @@ function List ({credits, isLoadMore}){
     const mapF = (item, ID) =>
     <div className="list_item" key={ID}>
         <img className="rounded-2xl mb-3" alt="cast" 
-            src={ item.profile_path ? "https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + item.profile_path : "/img/blank_person_300_450.png"} />
+            src={ item.profile_path ? "https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + item.profile_path : "movies_website/img/blank_person_300_450.png"} />
         <h4 className="mb-1">{item.name}</h4>
         <p className="text-sm text-slate-400">{item.character}</p>
     </div>

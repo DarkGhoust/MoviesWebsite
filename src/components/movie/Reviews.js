@@ -48,7 +48,7 @@ function Reviews({movieId}) {
                 { reviews === null ? <Loader elements={1} /> : <List reviews={reviews} setReviews={setReviews} isLoadMore={isLoadMore} /> }
                 { reviews?.total_pages > 1 && reviews?.page !== reviews?.total_pages ? <button onClick={loadMore}>Load more</button> : "" }
             </div>
-            { !isLoadMore && reviews?.total_results > 2 ? <button className="bg-slate-600 rounded-2xl py-1 px-4 mt-4 w-fit ml-auto text-sm" onClick={ () =>{ setIsLoadMore(true) }}>More reviews</button> : "" }
+            { !isLoadMore && reviews?.total_results > 2 ? <button className="bg-slate-200 dark:bg-slate-600 rounded-2xl py-1 px-4 mt-4 w-fit ml-auto text-sm" onClick={ () =>{ setIsLoadMore(true) }}>More reviews</button> : "" }
         </>
     )
 }
@@ -70,17 +70,17 @@ function List({reviews, setReviews, isLoadMore}){
     }
 
     const mapF = (item, ID) =>
-    <div className="flex flex-col rounded-2xl bg-slate-800 py-5 px-7" key={ID}>
+    <div className="flex flex-col rounded-2xl bg-slate-200 dark:bg-slate-800 py-5 px-7" key={ID}>
         <img style={{width: "fit-content"}} className="rounded-xl mb-3" alt="episode" 
-            src={ item.author_details.avatar_path ? "https://www.themoviedb.org/t/p/w45_and_h45_face" + item.author_details.avatar_path : "/img/blank_person_300_300.png"} />
+            src={ item.author_details.avatar_path ? "https://www.themoviedb.org/t/p/w45_and_h45_face" + item.author_details.avatar_path : "movies_website/img/blank_person_300_300.png"} />
         
         <div className="mb-3 text-slate-400" style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={ !item.isExpanded && item.tinyContent !== false ? { __html: item.tinyContent } : { __html: item.content } } />
         {
             !item.isExpanded && item.tinyContent !== false ? <span className="cursor-pointer underline text-sm mb-3" onClick={ () => { expand(ID) } }>See full</span>: ""
         }
-        <p className="text-right text-sm text-slate-300">
-            <label className="inline-flex rounded-md bg-slate-900 px-2 py-0.5 mr-2 items-center">
-                <Star customClass="fill-slate-100 w-4 h-4 inline mr-1" /> {item.author_details.rating}
+        <p className="text-right text-sm text-slate-600 dark:text-slate-300">
+            <label className="inline-flex rounded-md bg-slate-50 dark:bg-slate-900 px-2 py-0.5 mr-2 items-center">
+                <Star customClass="fill-slate-600 dark:fill-slate-100 w-4 h-4 inline mr-1" /> {item.author_details.rating}
             </label>
             Written by <b>{item.author_details.name}</b> on <b>{getReleaseDate(item.updated_at)}</b>
         </p>

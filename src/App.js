@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { HashRouter, Route, Routes } from "react-router-dom"
 import {TMDB } from "./components/Icons"
 import Header from "./components/Header"
 import Menu from "./components/Menu"
@@ -14,10 +14,10 @@ import DarkModeSwitcher from "./components/DarkModeSwitcher"
 function App() {
     return (
         <>
-            <BrowserRouter>
+            <HashRouter>
                 <aside className="w-64 h-screen sticky top-0 hidden sm:flex flex-col justify-between s">
                     <div>
-                        <img className="mx-auto px-8 w-full mb-8 mt-10" src="./img/moviesLogo.png" alt="logo"/>
+                        <img className="mx-auto px-8 w-full mb-8 mt-10" src="movies_website/img/moviesLogo.png" alt="logo"/>
                         <DarkModeSwitcher />
                         <Menu />
                     </div>
@@ -38,7 +38,7 @@ function App() {
                     </Routes>
                     <Footer />
                 </main>
-            </BrowserRouter>
+            </HashRouter>
         </>
     )
 }
