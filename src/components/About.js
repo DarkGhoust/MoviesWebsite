@@ -1,5 +1,3 @@
-import TopRated from "./home/TopRated"
-import { Link } from "react-router-dom"
 
 function About() {
     return (
@@ -8,7 +6,7 @@ function About() {
                 style={{backgroundImage: `url("https://img.freepik.com/free-photo/assortment-cinema-supplies_23-2147803976.jpg?w=1060&t=st=1700145238~exp=1700145838~hmac=41bf4ec655250a12b03cf363f33a359d8ba587e61b96e2196efbb14f2f72dd67")`}}>
                     <div className="z-[2]">
                         <h2 className="text-3xl font-bold mb-4">About This Project: <br/>A Developer's Pet Project for Portfolio Showcase</h2>
-                        <p className="mb-2">Welcome to [Your Project Name], a passion-driven endeavor crafted as a personal project for my portfolio. 
+                        <p className="mb-2">Welcome to MovieMingle, a passion-driven endeavor crafted as a personal project for my portfolio. 
                         This website is a testament to my skills and creativity, serving as a showcase of my abilities as a developer. 
                         Built from the ground up with dedication and enthusiasm, this project not only reflects my technical proficiency but also highlights 
                         my commitment to continuous learning.</p>

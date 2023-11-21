@@ -19,6 +19,17 @@
     /* --header-height: 72px; */
 }
 
+#root{
+    flex-direction: row;
+}
+
+@media (max-width: 639px) {
+    #root{
+        flex-direction: column;
+    }
+    
+}
+
 html.light{
     --bg-color: #f9fafb;
     --main-color: #2dd4bf;
