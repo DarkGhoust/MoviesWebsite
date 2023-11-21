@@ -72,7 +72,7 @@ function List({reviews, setReviews, isLoadMore}){
     const mapF = (item, ID) =>
     <div className="flex flex-col rounded-2xl bg-slate-200 dark:bg-slate-800 py-5 px-7" key={ID}>
         <img style={{width: "fit-content"}} className="rounded-xl mb-3" alt="episode" 
-            src={ item.author_details.avatar_path ? "https://www.themoviedb.org/t/p/w45_and_h45_face" + item.author_details.avatar_path : "movies_website/img/blank_person_300_300.png"} />
+            src={ item.author_details.avatar_path ? "https://www.themoviedb.org/t/p/w45_and_h45_face" + item.author_details.avatar_path : "./img/blank_person_300_300.png"} />
         
         <div className="mb-3 text-slate-400" style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={ !item.isExpanded && item.tinyContent !== false ? { __html: item.tinyContent } : { __html: item.content } } />
         {

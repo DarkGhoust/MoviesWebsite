@@ -17,7 +17,7 @@ function App() {
             <HashRouter>
                 <aside className="w-64 h-screen sticky top-0 hidden sm:flex flex-col justify-between s">
                     <div>
-                        <img className="mx-auto px-8 w-full mb-8 mt-10" src="movies_website/img/moviesLogo.png" alt="logo"/>
+                        <img className="mx-auto px-8 w-full mb-8 mt-10" src="./img/moviesLogo.png" alt="logo"/>
                         <DarkModeSwitcher />
                         <Menu />
                     </div>
