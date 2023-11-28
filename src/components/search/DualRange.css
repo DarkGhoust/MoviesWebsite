@@ -33,6 +33,10 @@
     justify-content: space-between;
 }
 
+.range_input input{
+    max-width: 110px;
+}
+
 /*
     Disable old Range Style
 */
